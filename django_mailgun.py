@@ -5,7 +5,10 @@ import requests
 from django.conf import settings
 from django.core.mail.backends.base import BaseEmailBackend
 from django.core.mail.message import sanitize_address
-from django.utils.encoding import force_text
+try:
+    from django.utils.encoding import force_text
+except ImportError: # for older django
+    from django.utils.encoding import force_unicode as force_text
 
 from requests.packages.urllib3.filepost import encode_multipart_formdata
 
